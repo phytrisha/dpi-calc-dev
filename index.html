@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>DpiCalc</title>
+		<link rel="stylesheet" href="style.css">
+		<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	</head>
+
+	<body>
+		<h1>Target Pixel Width</h1>
+		<div class="input">
+			<input type="number" id="targetPixelWidth" value="1920">
+		</div>
+		<h1>Target Actual Width (in cm):</h1>
+		<div class="input">
+			<input type="number" id="targetActualWidth">
+		</div>
+
+		<h1>Element Pixel Width:</h1>
+		<div class="input">
+			<input type="number" id="elementPixelWidth">
+		</div>
+
+		<h1>Element Pixel Height:</h1>
+		<div class="input">
+			<input type="number" id="elementPixelHeight">
+		</div>
+
+		<button id="getOutput">Output</button>
+		
+		<h2>Element Actual Width (in cm)</h2>
+		<ul id="elementActualWidth">
+			<li>no input yet</li>
+		</ul>
+		<h2>Element Actual Height (in cm)</h2>
+		<ul id="elementActualHeight">
+			<li>no input yet</li>
+		</ul>	
+		<h2>Target Dpi</h2>
+		<ul id="targetDpi">
+			<li>no input yet</li>
+		</ul>
+
+		<script type="text/javascript">
+			$("#getOutput").click(function() {
+				var targetPixelWidthValue = document.getElementById('targetPixelWidth').value;
+				var targetActualWidthValue = document.getElementById('targetActualWidth').value;
+				var elementPixelWidthValue = document.getElementById('elementPixelWidth').value;
+				var elementPixelHeightValue = document.getElementById('elementPixelHeight').value;
+				
+				var targetDpi = (targetPixelWidthValue * 2.54) / targetActualWidthValue;
+				var elementActualWidth = (elementPixelWidthValue * 2.54) / targetDpi;
+				var elementActualHeight = (elementPixelHeightValue * 2.54) / targetDpi;
+
+				var nodeElementActualWidth = document.createElement("LI1");
+			    var textnodeElementActualWidth = document.createTextNode(elementActualWidth);
+			    nodeElementActualWidth.appendChild(textnodeElementActualWidth);
+			    var listItem1 = document.getElementById("elementActualWidth");
+			    listItem1.replaceChild(nodeElementActualWidth, listItem1.childNodes[1]);
+
+			    var nodeElementActualHeight = document.createElement("LI2");
+			    var textnodeElementActualHeight = document.createTextNode(elementActualHeight);
+			    nodeElementActualHeight.appendChild(textnodeElementActualHeight);
+			    var listItem2 = document.getElementById("elementActualHeight");
+			    listItem2.replaceChild(nodeElementActualHeight, listItem2.childNodes[1]);
+
+			    var nodetargetDpi = document.createElement("LI1");
+			    var textnodetargetDpi = document.createTextNode(targetDpi);
+			    nodetargetDpi.appendChild(textnodetargetDpi);
+			    var listItem3 = document.getElementById("targetDpi");
+			    listItem3.replaceChild(nodetargetDpi, listItem3.childNodes[1]);
+			});
+		</script>
+	</body>
+</html>
